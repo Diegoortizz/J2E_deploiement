@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(
-        name = "LoginServlet",
-        urlPatterns = {"/app"}
-)
+@WebServlet("/servlet") 
 public class LoginServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
