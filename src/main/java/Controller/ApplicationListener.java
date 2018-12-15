@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -32,6 +33,11 @@ public class ApplicationListener implements ServletContextListener{
         if (!databaseExists()){
             initializeDatabase();
         }
+        
+        ServletContext context = sce.getServletContext();
+        DAO dao = new DAO(DataSourceFactory.getDataSource());
+        context.setAttribute("dat", dao);
+        
     }
 
     @Override
