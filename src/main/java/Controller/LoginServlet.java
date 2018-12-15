@@ -94,7 +94,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void showView(String jsp, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletConfig().getServletContext().getRequestDispatcher("/" + jsp).forward(request, response);
+        request.getRequestDispatcher("/" + jsp).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
