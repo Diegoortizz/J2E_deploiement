@@ -15,7 +15,7 @@
     </properties>
     
     <dependencies>
-        <!-- Le driver JDBC utilisé seulement pour le test -->        
+        <!-- Le driver JDBC utilisé seulement pour le test -->
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
