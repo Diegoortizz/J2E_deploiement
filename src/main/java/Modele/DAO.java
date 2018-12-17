@@ -334,9 +334,7 @@ public class DAO {
             throw new SQLException(ex.getMessage());
         }
     }
-    
-    
-    
+
     public int deleteProduct(int id) throws Exception {
 
         // Une requête SQL paramétrée
@@ -361,14 +359,14 @@ public class DAO {
                 PreparedStatement stmt = connection.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                int id  = rs.getInt("MANUFACTURER_ID");
+                int id = rs.getInt("MANUFACTURER_ID");
 
                 result.add(id);
             }
         }
         return result;
     }
-    
+
     public List<String> allProd_Code() throws SQLException {
         List<String> result = new LinkedList<>();
         String sql = "SELECT PROD_CODE FROM PRODUCT_CODE";
@@ -376,14 +374,14 @@ public class DAO {
                 PreparedStatement stmt = connection.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                String code  = rs.getString("PROD_CODE");
+                String code = rs.getString("PROD_CODE");
 
                 result.add(code);
             }
         }
         return result;
     }
-    
+
     //Méthodes pour les bons de commandes
     public int numberDiscount() throws SQLException {
         int result = 0;
@@ -659,7 +657,8 @@ public class DAO {
             return result;
         }
     }
-        //Classer par ordre alphabétique des etats
+    //Classer par ordre alphabétique des etats
+
     public Map<String, Double> StateCA(String beg, String end) throws SQLException {
         Map<String, Double> result = new HashMap();
         // Une requête SQL paramétrée
@@ -685,7 +684,8 @@ public class DAO {
             return result;
         }
     }
-        //Classer par ordre alphabétique des description.
+    //Classer par ordre alphabétique des description.
+
     public Map<String, Double> ProductCA(String beg, String end) throws SQLException {
         Map<String, Double> result = new HashMap();
         // Une requête SQL paramétrée
