@@ -58,13 +58,12 @@ public class LoginServlet extends HttpServlet {
 
         String log = request.getParameter("log");
         String mdp = request.getParameter("mdp");
+        System.out.println(log + " " + mdp);
 
         if (log.equals("admin") && mdp.equals("admin")) {
-
             showView("AdminProduct.jsp", request, response);
 
         } else {
-
             DAO dao = new DAO(DataSourceFactory.getDataSource());
             Customer c = null;
             try {
