@@ -21,6 +21,7 @@ public class LoginServlet extends HttpServlet {
         String action = request.getParameter("action");
         System.out.println("ACTION " + action);
         DAO dao = new DAO(DataSourceFactory.getDataSource());
+        System.out.println("DAO OK");
         if (action != null) {
             switch (action) {
                 case "Connexion":
