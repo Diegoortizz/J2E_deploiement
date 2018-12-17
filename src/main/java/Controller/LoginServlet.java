@@ -8,13 +8,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/servlet")
 public class LoginServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -22,6 +20,7 @@ public class LoginServlet extends HttpServlet {
 
         String action = request.getParameter("action");
         System.out.println("ACTION " + action);
+        DAO dao = new DAO(DataSourceFactory.getDataSource());
         if (action != null) {
             switch (action) {
                 case "Connexion":
@@ -39,6 +38,8 @@ public class LoginServlet extends HttpServlet {
                     showView("AddProduct.jsp", request, response);
                 case "Accéder aux statistiques":
                     showView("viewCharts.jsp", request, response);
+                case "Vos Produits":
+                    showView("AdminProduct.jsp", request, response);
             }
         } else {
             showView("login_test.jsp", request, response);
@@ -69,32 +70,34 @@ public class LoginServlet extends HttpServlet {
             Customer c = null;
             try {
                 c = dao.Customer(log);
+                String email = c.getEmail();
+                String id = Integer.toString(c.getCustomerId());
+                session.setAttribute("id", c.getCustomerId());
+                session.setAttribute("name", c.getName());
+                session.setAttribute("email", c.getEmail());
+                session.setAttribute("adresse", c.getAddressLine1());
+                session.setAttribute("telephone", c.getPhone());
+                session.setAttribute("state", c.getState());
+                session.setAttribute("city", c.getCity());
+                session.setAttribute("credit", c.getCreditLimit());
+
+                if ((log == null ? email == null : log.equals(email)) && (mdp == null ? id == null : mdp.equals(id))) {
+                    request.setAttribute("correct", true);
+                    showView("client_side_view.jsp", request, response);
+                } else {
+                    request.setAttribute("correct", false);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+                showView("login_test.jsp", request, response);
+
             }
 
-            String email = c.getEmail();
-            String id = Integer.toString(c.getCustomerId());
-            session.setAttribute("id", c.getCustomerId());
-            session.setAttribute("name", c.getName());
-            session.setAttribute("email", c.getEmail());
-            session.setAttribute("adresse", c.getAddressLine1());
-            session.setAttribute("telephone", c.getPhone());
-            session.setAttribute("state", c.getState());
-            session.setAttribute("city", c.getCity());
-            session.setAttribute("credit", c.getCreditLimit());
-
-            if ((log == null ? email == null : log.equals(email)) && (mdp == null ? id == null : mdp.equals(id))) {
-                request.setAttribute("correct", true);
-                showView("client_side_view.jsp", request, response);
-            } else {
-                request.setAttribute("correct", false);
-            }
         }
     }
 
     private void showView(String jsp, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/" + jsp).forward(request, response);
+        getServletConfig().getServletContext().getRequestDispatcher("/" + jsp).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
