@@ -64,10 +64,6 @@
         <servlet-name>SalesByProduct</servlet-name>
         <url-pattern>/SalesByProduct</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ApplicationListener</servlet-name>
-        <url-pattern>/ApplicationListener</url-pattern>
-    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>Servlet1</welcome-file>
     </welcome-file-list>
