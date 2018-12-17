@@ -69,7 +69,7 @@ public class LoginServlet extends HttpServlet {
             Customer c = null;
             try {
                 c = dao.Customer(log);
-                System.out.println(c.getEmail() + "   " + c.getAddressLine1());
+//                System.out.println(c.getEmail() + "   " + c.getAddressLine1());
                 String email = c.getEmail();
                 String id = Integer.toString(c.getCustomerId());
                 session.setAttribute("id", c.getCustomerId());
@@ -88,6 +88,7 @@ public class LoginServlet extends HttpServlet {
                     request.setAttribute("correct", false);
                 }
             } catch (SQLException ex) {
+                System.out.println("CONNAIT PAS LE SQL");
                 Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
                 showView("login_test.jsp", request, response);
 
