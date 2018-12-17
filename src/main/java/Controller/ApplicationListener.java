@@ -7,12 +7,9 @@ package Controller;
 
 import Modele.DataSourceFactory;
 import Modele.DAO;
-import Modele.Discount;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContextEvent;
@@ -54,7 +51,7 @@ public class ApplicationListener implements ServletContextListener {
         Logger.getLogger("ProjetJEE").log(Level.INFO, "Creating databse from SQL script");
         try {
             Connection connection = DataSourceFactory.getDataSource().getConnection();
-            int result = ij.runScript(connection, this.getClass().getResourceAsStream("TestData.sql"), "UTF-8", System.out, "UTF-8");
+            int result = ij.runScript(connection, this.getClass().getResourceAsStream("export.sql"), "UTF-8", System.out, "UTF-8");
             if (result == 0) {
                 Logger.getLogger("ProjetJEE").log(Level.INFO, "Database succesfully created");
             } else {
