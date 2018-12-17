@@ -20,8 +20,6 @@ public class LoginServlet extends HttpServlet {
 
         String action = request.getParameter("action");
         System.out.println("ACTION " + action);
-        DAO dao = new DAO(DataSourceFactory.getDataSource());
-        System.out.println("DAO OK");
         if (action != null) {
             switch (action) {
                 case "Connexion":
@@ -71,6 +69,7 @@ public class LoginServlet extends HttpServlet {
             Customer c = null;
             try {
                 c = dao.Customer(log);
+                System.out.println(c.getEmail() + "   " + c.getAddressLine1());
                 String email = c.getEmail();
                 String id = Integer.toString(c.getCustomerId());
                 session.setAttribute("id", c.getCustomerId());
