@@ -3,11 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.mycompany</groupId>
-    <artifactId>ProjetJEE</artifactId>
+    <artifactId>ProjetJ2EE</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+    
+    
 
-    <name>ProjetJEE</name>
+    <name>ProjetJ2EE</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -15,28 +17,6 @@
     </properties>
     
     <dependencies>
-        <!-- Le driver JDBC utilisé seulement pour le test -->        
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>2.0.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>10.14.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbyclient</artifactId>
-            <version>10.14.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derbytools</artifactId>
-            <version>10.14.1.0</version>
-        </dependency>	
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -50,11 +30,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>sqltool</artifactId>
-            <version>2.4.0</version>
-            <scope>test</scope>
-            <type>jar</type>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.3</version>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
@@ -62,15 +41,48 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
-        
-        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <!-- Derby network client JDBC driver -->
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbyclient</artifactId>
+            <version>10.14.1.0</version>
+        </dependency>
+        <!-- JSON -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.8.5</version>
+            <version>2.8.2</version>
         </dependency>
-        
-        
+        <!-- Le driver JDBC utilisé seulement pour le test -->        
+        <dependency>
+                <groupId>org.hsqldb</groupId>
+                <artifactId>hsqldb</artifactId>
+                <version>2.0.0</version>
+        </dependency>
+        <!-- sqltool utilisé seulement pour le test pour initialiser la base -->                
+        <dependency>
+                <groupId>org.hsqldb</groupId>
+                <artifactId>sqltool</artifactId>
+                <version>2.0.0</version>
+        </dependency>
+        <!-- Derby embedded database and JDBC Driver -->
+        <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derby</artifactId>
+                <version>10.14.1.0</version>
+        </dependency>
+        <!-- Derby tols (for initializing database from SQL script) -->
+        <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derbytools</artifactId>
+                <version>10.14.1.0</version>
+        </dependency>
+        <!-- For deployment to tomcat, which does not provide the JSTL -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -115,13 +127,12 @@
                                     <version>7.0</version>
                                     <type>jar</type>
                                 </artifactItem>
-                                <!-- for Heroku, see: https://devcenter.heroku.com/articles/java-webapp-runner -->
                                 <artifactItem>
                                     <groupId>com.github.jsimone</groupId>
                                     <artifactId>webapp-runner</artifactId>
                                     <version>8.5.23.0</version>
                                     <destFileName>webapp-runner.jar</destFileName>
-                                </artifactItem>
+                                </artifactItem>	
                             </artifactItems>
                         </configuration>
                     </execution>

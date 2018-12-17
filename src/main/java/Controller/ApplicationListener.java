@@ -1,21 +1,17 @@
 package Controller;
 
 import Modele.DAO;
-import Modele.DAOException;
 import Modele.DataSourceFactory;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import org.apache.derby.tools.ij;
 
@@ -24,7 +20,6 @@ import org.apache.derby.tools.ij;
  * @author pedago
  */
 @WebListener()
-@WebServlet(name = "ApplicationListener", urlPatterns = {"/ApplicationListener"})
 public class ApplicationListener extends HttpServlet implements ServletContextListener {
 
     @Override
