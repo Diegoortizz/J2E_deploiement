@@ -2,10 +2,6 @@ package Modele;
 
 import javax.sql.DataSource;
 
-/**
- *
- * @author rbastide
- */
 public class DataSourceFactory {
 
     public static DataSource getDataSource() {
