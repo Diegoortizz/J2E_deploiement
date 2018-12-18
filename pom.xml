@@ -55,33 +55,38 @@
         </dependency>
         <!-- Le driver JDBC utilisé seulement pour le test -->        
         <dependency>
-                <groupId>org.hsqldb</groupId>
-                <artifactId>hsqldb</artifactId>
-                <version>2.0.0</version>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.0.0</version>
         </dependency>
         <!-- sqltool utilisé seulement pour le test pour initialiser la base -->                
         <dependency>
-                <groupId>org.hsqldb</groupId>
-                <artifactId>sqltool</artifactId>
-                <version>2.0.0</version>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>sqltool</artifactId>
+            <version>2.0.0</version>
         </dependency>
         <!-- Derby embedded database and JDBC Driver -->
         <dependency>
-                <groupId>org.apache.derby</groupId>
-                <artifactId>derby</artifactId>
-                <version>10.14.1.0</version>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.14.1.0</version>
         </dependency>
         <!-- Derby tols (for initializing database from SQL script) -->
         <dependency>
-                <groupId>org.apache.derby</groupId>
-                <artifactId>derbytools</artifactId>
-                <version>10.14.1.0</version>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbytools</artifactId>
+            <version>10.14.1.0</version>
         </dependency>
         <!-- For deployment to tomcat, which does not provide the JSTL -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derbytools</artifactId>
+            <version>10.14.1.0</version>
         </dependency>
     </dependencies>
 

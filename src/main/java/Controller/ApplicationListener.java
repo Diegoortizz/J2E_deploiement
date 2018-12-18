@@ -26,16 +26,16 @@ public class ApplicationListener extends HttpServlet implements ServletContextLi
     public void contextInitialized(ServletContextEvent sce) {
         try {
             if (!databaseExists()) {
+                System.out.println("la database existe");
                 initializeDatabase();
             }
         } catch (SQLException ex) {
+            System.out.println("la database existe pas");
             Logger.getLogger(ApplicationListener.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         ServletContext context = sce.getServletContext();
-
         DAO dao = new DAO(DataSourceFactory.getDataSource());
-
         context.setAttribute("dao", dao);
 
     }
